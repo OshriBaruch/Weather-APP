@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WEATHER APP FULL STACK PROJECT</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:400i" rel="stylesheet">    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body>
+    <div id="citiesWEATHER">
+        <input type="text" id="city-input" placeholder="Get your WEATHER city">
+        <button class = "serchCityBut" onclick=handleSearch()>Find</button>
+    </div>
+    <!---------------------------------->
+    <div id="container"></div>
+    <!---------------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <!---------------------------------->
+    <script id="city-template" type="text/x-handlebars-template">
+        <div data-id="{{name}}" class="box">
+            <h1 class="cityName">{{name}}</h1>
+            <img class="fas fa-igloo" class="conditionImg" src="{{conditionPic}}">
+            <h3 class="temperature">{{temperature}}°</h3>
+            <h4 class="condition">{{condition}}</h4>
+            <h2 class="timeUpdated">{{updatedAt}}</h2>
+            <div class="buttonContainer">
+                <button class="refresh">Refresh</button>
+                <button class="removeCityBut">Remove City</button>
+                <button class="saveCityBut">Save City</button>
+            </div>
+        </div>
+    </script>
+    <!---------------------------------->
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="tempManager.js"></script>
+    <script src="renderer.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

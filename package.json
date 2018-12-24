@@ -1,7 +1,6 @@
 {
   "name": "weatherapp",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,5 +17,15 @@
     "moment": "^2.23.0",
     "mongoose": "^5.4.0",
     "request": "^2.88.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OshriBaruch/Weather-APP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OshriBaruch/Weather-APP/issues"
+  },
+  "homepage": "https://github.com/OshriBaruch/Weather-APP#readme",
+  "description": ""
 }

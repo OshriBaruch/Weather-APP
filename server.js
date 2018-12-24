@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost/weatherDB")
+mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost/weatherDB")
 
 const app = express()
 
@@ -14,6 +14,6 @@ app.use('/', api)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.listen(1996, function() {
+app.listen(process.env.PORT || 1996, function() {
   console.log("Server up and running on port 1996")
 })

@@ -18,7 +18,6 @@ $("body").on("click", ".saveCityBut", async function () {
 
 $("body").on("click", ".removeCityBut", async function () {
     let cityName = $(this).closest('.box').data().id
-    console.log(cityName)
     await manager.removeCity(cityName)
     await manager.getDataFromDB()
     console.log("remove "+ cityName)

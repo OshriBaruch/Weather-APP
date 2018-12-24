@@ -3,7 +3,6 @@ class TempManager {
         this.renderer = renderer
         this.cityData = []
     }
-    checkj
     async getDataFromDB() {
         await $.get(`cities`, (cities) => {
             cities.forEach(f => {

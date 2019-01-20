@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost/weatherDB")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/weatherDB")
 
 const app = express()
 

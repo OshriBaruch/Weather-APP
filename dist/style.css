@@ -1,0 +1,98 @@
+* {
+    background-color: #EEEEEE;
+    font-family: 'Montserrat Alternates', sans-serif !important;
+}
+
+#citiesWEATHER{
+    display: grid;
+    grid-column-gap: 5px;
+    grid-template-columns: 3fr 1fr;
+    height: 100px;
+
+    margin: 5%;
+    padding: 10px;
+    border-radius: 25px;
+}
+#city-input{
+    font-size: 40px;
+    padding-left: 15%;
+}
+.serchCityBut{
+    font-size: 40px;
+}
+
+#container{
+    margin: 5%;
+    padding: 3px;
+    display: grid;
+    grid-row-gap: 25px;
+}
+  
+.box{
+    border: 5px solid rgb(100, 146, 206);
+    display: grid; 
+    border-radius: 20px;
+    grid-template-areas:
+    "cN cN c c"
+    "tU t t cI"
+    "bC bC bC bC";
+    box-shadow: 2px 2px 5px #2c3e50;
+    background-color: #125E8A !important;
+    color: white;
+    height: 450px;
+    max-height: 450px;
+}
+
+.box > * {
+    background-color: #125E8A !important;
+    padding: 2;
+}
+
+.cityName{
+    justify-self: start;
+    padding-left: 24px;
+    grid-area : cN;
+    font-size: 64px;
+}
+.conditionImg{
+    justify-self:flex-end;
+    height: 150px;
+    width:150px;
+    grid-area : cI;
+}
+.temperature{
+    font-size: 64px;
+    grid-area : t;
+}
+.condition{
+    justify-self: center;
+    grid-area : c;
+    font-size: 48px;
+}
+.timeUpdated{
+    grid-area : tU;
+    font-size: 24px;
+    text-align: center;
+    justify-self: center;
+    width: 65%;
+}
+.buttonContainer{
+    grid-area : bC;
+    display: grid; 
+    width: 95%;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-self: center;
+    color: black;
+}
+.buttonContainer > * {
+    border-radius: 25px;
+}
+.saveCityBut{
+    font-size: 35px;
+}
+.removeCityBut{
+    font-size: 35px;
+}
+.refresh{
+    font-size: 35px;
+}

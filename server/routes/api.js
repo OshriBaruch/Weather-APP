@@ -12,17 +12,18 @@ router.use(bodyParser.urlencoded({ extended: false }))
 router.get('/city/:cityName', function (req, res) {
     let cityName = req.params.cityName
     if (cityName) {
-        request(`http://api.apixu.com/v1/current.json?key=47eadbecaa6f465a8a6131020181912&q=${cityName}`, function (error, response) {
+        request(`http://api.weatherstack.com/current?access_key=5e11a1c43a1296b2db2a248c7c6ee7cc&query=${cityName}`, function (error, response) {
             if (error) { res.send('apixu_API :error ' + error) }
             let cityAPI = JSON.parse(response.body)
-            if (!(response.body)) { console.log("no data from API") }
-            else {
+            if (!(response.body)) {
+                console.log("no data from API")
+            } else {
                 res.send({
                     name: cityAPI.location.name,
                     updatedAt: moment().format('LLLL'),
-                    temperature: cityAPI.current.temp_c,
-                    condition: cityAPI.current.condition.text,
-                    conditionPic: cityAPI.current.condition.icon
+                    temperature: cityAPI.current.temperature,
+                    condition: cityAPI.current.weather_descriptions[0],
+                    conditionPic: cityAPI.current.weather_icons[0],
                 })
             }
         })
@@ -42,7 +43,6 @@ router.post('/city', function (req, res) {
 })
 
 router.delete('/city/:cityName', function (req, res) {
-    console.log("req.params.cityName " + req.params.cityName)
     City.remove({ name: req.params.cityName })
         .exec(function (err, city) {
             res.send(`${city.name} delete`)

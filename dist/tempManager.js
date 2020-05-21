@@ -4,8 +4,8 @@ class TempManager {
         this.cityData = []
     }
     async getDataFromDB() {
-        await $.get(`cities`, (cities) => {
-            cities.forEach(f => {
+        await $.get(`cities`, (cities = []) => {
+            (cities||[]).forEach(f => {
                 this.cityData.forEach(c => {
                     if (f.name === c.name) {
                         this.cityData = this.cityData.filter(f => f.name !== c.name)
@@ -18,10 +18,11 @@ class TempManager {
 
     }
     async getCityData(cityName) {
-        cityName=cityName.charAt(0).toUpperCase() + cityName.substr(1).toLowerCase();
-        this.cityData = this.cityData.filter(f => f.name !== cityName)
-        let data = await $.get(`city/${cityName}`)
-        this.cityData.push(data)
+        let newCityName = cityName.charAt(0).toUpperCase() + cityName.substr(1).toLowerCase();
+        const listOfCities = this.cityData.filter(f => f.name !== newCityName)
+        let data = await $.get(`city/${newCityName}`)
+        listOfCities.push(data)
+        this.cityData = listOfCities
     }
     async saveCity(cityName) {
         let city = this.cityData.find(c => c.name == cityName)

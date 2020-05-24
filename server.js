@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://root:password123@host.docker.internal:27017/weatherDB?authSource=admin3')
-console.log("process.env.MONGO_CONNECTION_STRING", process.env.MONGO_CONNECTION_STRING)
+mongoose.connect(process.env.MONGO_CONNECTION_STRING)
+console.log('connect to mongos db seccesefly')
 
 const app = express()
 

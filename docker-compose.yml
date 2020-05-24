@@ -6,74 +6,32 @@ services:
       volumes:
         - ./nginx.conf:/etc/nginx/nginx.conf
       ports:
-        - "80:80"
+        - "8000:80"
       restart: always
 
-  app:
-    container_name: app
-    image: bitnami/mongodb:4.0
+  my-node-app:
+    container_name: my-node-app
+    image: osherbaruch/weather_image:1.0.0
     ports:
-      - "27017"
-    volumes:
-      - 'bitnami_db-volume:/bitnami'
+      - "3000"
     env_file:
-      - ./node.env
-    networks:
-      app-network:
+      - .env
     depends_on:
       - nginx
-      - primary
+      - mongo-practice2
     restart: always
 
-  primary:
-    container_name: primary
+  mongo-practice2:
+    container_name: mongo-practice2
     image: bitnami/mongodb:4.0
     ports:
       - "30001:27017"
     volumes:
-      - 'bitnami_db-volume:/bitnami'
+      - 'mongo-practice2_mongodb_data:/bitnami'
     environment:
-      - MONGODB_ADVERTISED_HOSTNAME=primary
-      - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_REPLICA_SET_KEY=password123
-    networks:
-      app-network:
     restart: always
-
-  secondary1:
-    container_name: second-db
-    image: bitnami/mongodb:4.0
-    ports:
-      - "30002:27017"
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=secondary1
-      - MONGODB_REPLICA_SET_MODE=secondary
-      - MONGODB_PRIMARY_ROOT_PASSWORD=password123
-      - MONGODB_REPLICA_SET_KEY=password123
-      - MONGODB_PRIMARY_HOST=primary
-    networks:
-      app-network:
-    restart: always
-
-  secondary2:
-    container_name: third-db
-    image: bitnami/mongodb:4.0
-    ports:
-      - "30003:27017"
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=secondary2
-      - MONGODB_REPLICA_SET_MODE=secondary
-      - MONGODB_PRIMARY_ROOT_PASSWORD=password123
-      - MONGODB_REPLICA_SET_KEY=password123
-      - MONGODB_PRIMARY_HOST=primary
-    networks:
-      app-network:
-    restart: always
-
-networks:
-  app-network:
 
 volumes:
-  bitnami_db-volume:
+  mongo-practice2_mongodb_data:
     driver: local

@@ -17,6 +17,6 @@ app.use('/', api)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.listen(1001 || process.env.PORT, function() {
+app.listen(process.env.PORT, function() {
   console.log(`Server up and running on port ${process.env.PORT}`)
 })

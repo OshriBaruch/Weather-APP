@@ -7,11 +7,13 @@ services:
         - ./nginx.conf:/etc/nginx/nginx.conf
       ports:
         - "8000:80"
+      networks:
+        my-network:
       restart: always
 
   my-node-app:
     container_name: my-node-app
-    image: osherbaruch/weather_image:1.0.0
+    image: osherbaruch/weather_image:1.0.7
     ports:
       - "3000"
     env_file:
@@ -19,6 +21,8 @@ services:
     depends_on:
       - nginx
       - mongo-practice2
+    networks:
+      my-network:
     restart: always
 
   mongo-practice2:
@@ -30,7 +34,12 @@ services:
       - 'mongo-practice2_mongodb_data:/bitnami'
     environment:
       - MONGODB_ROOT_PASSWORD=password123
+    networks:
+      my-network:
     restart: always
+
+networks:
+  my-network:
 
 volumes:
   mongo-practice2_mongodb_data:
